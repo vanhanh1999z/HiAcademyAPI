@@ -14,11 +14,13 @@ namespace HiAcademyAPI.Controllers
     {
         private readonly HIACADEMYContext _context;
         private readonly IMapper _mapper;
+
         public AppCourseinfoController(HIACADEMYContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
+
         [HttpGet]
         [Route("getall")]
         public async Task<ActionResult> GetListAll()
@@ -27,7 +29,7 @@ namespace HiAcademyAPI.Controllers
             {
                 try
                 {
-                    var query = @"SELECT        dbo.APP_COURSEINFO.IDCOURSE AS idcourse, dbo.APP_COURSE.NAME AS name, dbo.APP_COURSE.DESCRIPTION AS description, dbo.APP_COURSEINFO.IDLESSION AS idlession, dbo.APP_LESSION.NAME AS namelession, 
+                    var query = @"SELECT        dbo.APP_COURSEINFO.IDCOURSE AS idcourse, dbo.APP_COURSE.NAME AS name, dbo.APP_COURSE.DESCRIPTION AS description, dbo.APP_COURSEINFO.IDLESSION AS idlession, dbo.APP_LESSION.NAME AS namelession,
                          dbo.APP_LESSION.DESCRIPTION AS deslession, dbo.APP_LESSION.IMAGE AS image, dbo.APP_LESSION.SOUND AS sound
 FROM            dbo.APP_COURSEINFO INNER JOIN
                          dbo.APP_COURSE ON dbo.APP_COURSEINFO.IDCOURSE = dbo.APP_COURSE.ID INNER JOIN
@@ -43,7 +45,6 @@ FROM            dbo.APP_COURSEINFO INNER JOIN
                 }
                 catch (Exception)
                 {
-
                     return Ok(new ResultMessageResponse()
                     {
                         success = false,
@@ -61,7 +62,7 @@ FROM            dbo.APP_COURSEINFO INNER JOIN
             {
                 try
                 {
-                    var query = $@"SELECT        dbo.APP_COURSEINFO.IDCOURSE AS idcourse, dbo.APP_COURSE.NAME AS name, dbo.APP_COURSE.DESCRIPTION AS description, dbo.APP_COURSEINFO.IDLESSION AS idlession, dbo.APP_LESSION.NAME AS namelession, 
+                    var query = $@"SELECT        dbo.APP_COURSEINFO.IDCOURSE AS idcourse, dbo.APP_COURSE.NAME AS name, dbo.APP_COURSE.DESCRIPTION AS description, dbo.APP_COURSEINFO.IDLESSION AS idlession, dbo.APP_LESSION.NAME AS namelession,
                          dbo.APP_LESSION.DESCRIPTION AS deslession, dbo.APP_LESSION.IMAGE AS image, dbo.APP_LESSION.SOUND AS sound
 FROM            dbo.APP_COURSEINFO INNER JOIN
                          dbo.APP_COURSE ON dbo.APP_COURSEINFO.IDCOURSE = dbo.APP_COURSE.ID INNER JOIN
@@ -79,7 +80,6 @@ FROM            dbo.APP_COURSEINFO INNER JOIN
                 }
                 catch (Exception)
                 {
-
                     return Ok(new ResultMessageResponse()
                     {
                         success = false,
@@ -87,9 +87,8 @@ FROM            dbo.APP_COURSEINFO INNER JOIN
                     });
                 }
             }
-
-
         }
+
         [HttpPost]
         [Route("add")]
         public async Task<ActionResult> Add([FromBody] AppCourseinfoDTO model)
@@ -139,7 +138,6 @@ FROM            dbo.APP_COURSEINFO INNER JOIN
                 }
                 catch (Exception)
                 {
-
                     return Ok(new ResultMessageResponse()
                     {
                         success = false,
@@ -170,9 +168,6 @@ FROM            dbo.APP_COURSEINFO INNER JOIN
                 message = "Thành công",
             };
             return Ok(res);
-
-
-
         }
     }
 }
